@@ -4,12 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainBalancer", "MainBalancer\MainBalancer.csproj", "{755D595E-6CE5-4A98-8A93-DFC58898FBF7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AB5E2E1D-4CED-48BB-AAEC-CBC5F45A5EB4} = {AB5E2E1D-4CED-48BB-AAEC-CBC5F45A5EB4}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaneClient", "PlaneClient\PlaneClient.csproj", "{55A3BBDB-2104-4D98-9EC9-0016D07271E7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{755D595E-6CE5-4A98-8A93-DFC58898FBF7} = {755D595E-6CE5-4A98-8A93-DFC58898FBF7}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainServer", "MainServer\MainServer.csproj", "{AB5E2E1D-4CED-48BB-AAEC-CBC5F45A5EB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveServer", "ReserveServer\ReserveServer.csproj", "{1978BDA1-EEA6-4EEB-9EED-F9321D269062}"
+	ProjectSection(ProjectDependencies) = postProject
+		{755D595E-6CE5-4A98-8A93-DFC58898FBF7} = {755D595E-6CE5-4A98-8A93-DFC58898FBF7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

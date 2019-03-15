@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="NewPlane">
+        <s:complexType />
+      </s:element>
+      <s:element name="NewPlaneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NewPlaneResult" type="tns:Plane" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Plane">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="State" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PlaneType" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ChangeState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="plane" type="tns:Plane" />
+            <s:element minOccurs="1" maxOccurs="1" name="newState" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeStateResult" type="tns:Plane" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="plane" type="tns:Plane" />
+            <s:element minOccurs="0" maxOccurs="1" name="newName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeNameResult" type="tns:Plane" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="plane" type="tns:Plane" />
+            <s:element minOccurs="1" maxOccurs="1" name="newType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeTypeResult" type="tns:Plane" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="NewPlaneSoapIn">
+    <wsdl:part name="parameters" element="tns:NewPlane" />
+  </wsdl:message>
+  <wsdl:message name="NewPlaneSoapOut">
+    <wsdl:part name="parameters" element="tns:NewPlaneResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeStateSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeState" />
+  </wsdl:message>
+  <wsdl:message name="ChangeStateSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeNameSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeName" />
+  </wsdl:message>
+  <wsdl:message name="ChangeNameSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeType" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeTypeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MainServerServiceSoap">
+    <wsdl:operation name="NewPlane">
+      <wsdl:input message="tns:NewPlaneSoapIn" />
+      <wsdl:output message="tns:NewPlaneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeState">
+      <wsdl:input message="tns:ChangeStateSoapIn" />
+      <wsdl:output message="tns:ChangeStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeName">
+      <wsdl:input message="tns:ChangeNameSoapIn" />
+      <wsdl:output message="tns:ChangeNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeType">
+      <wsdl:input message="tns:ChangeTypeSoapIn" />
+      <wsdl:output message="tns:ChangeTypeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MainServerServiceSoap" type="tns:MainServerServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewPlane">
+      <soap:operation soapAction="http://tempuri.org/NewPlane" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeState">
+      <soap:operation soapAction="http://tempuri.org/ChangeState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeName">
+      <soap:operation soapAction="http://tempuri.org/ChangeName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeType">
+      <soap:operation soapAction="http://tempuri.org/ChangeType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MainServerServiceSoap12" type="tns:MainServerServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewPlane">
+      <soap12:operation soapAction="http://tempuri.org/NewPlane" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeState">
+      <soap12:operation soapAction="http://tempuri.org/ChangeState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeName">
+      <soap12:operation soapAction="http://tempuri.org/ChangeName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeType">
+      <soap12:operation soapAction="http://tempuri.org/ChangeType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MainServerService">
+    <wsdl:port name="MainServerServiceSoap" binding="tns:MainServerServiceSoap">
+      <soap:address location="http://localhost:6066/MainServerService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MainServerServiceSoap12" binding="tns:MainServerServiceSoap12">
+      <soap12:address location="http://localhost:6066/MainServerService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
