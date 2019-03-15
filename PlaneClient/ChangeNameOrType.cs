@@ -36,7 +36,7 @@ namespace PlaneClient
         {
             if (askType == 1)
             {
-                if (tbName.Text.Length != 0)
+                if (tbName.Text.Trim().Length != 0)
                     return true;
                 MessageBox.Show("Введите название!");
                 return false;

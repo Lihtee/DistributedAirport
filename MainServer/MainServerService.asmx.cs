@@ -16,6 +16,8 @@ namespace MainServer
     // [System.Web.Script.Services.ScriptService]
     public class MainServerService : System.Web.Services.WebService
     {
+        public List<BalancerReference.Request> currentTasks;
+
         [WebMethod]
         public Plane NewPlane()
         {

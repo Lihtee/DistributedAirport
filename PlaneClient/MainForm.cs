@@ -13,7 +13,7 @@ namespace PlaneClient
     public partial class MainForm : Form
     {
         public static BalancerReference.BalancerServiceSoapClient clientReference = new BalancerReference.BalancerServiceSoapClient();
-        public BalancerReference.Plane currnetPlane = clientReference.NewPlane();
+        public BalancerReference.Plane currentPlane = clientReference.NewPlane();
 
         public MainForm()
         {
@@ -25,12 +25,12 @@ namespace PlaneClient
             ChangeNameOrType form = new ChangeNameOrType();
 
             form.ChangeType(1);
-            form.tbName.Text = currnetPlane.Name;
+            form.tbName.Text = currentPlane.Name;
 
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                currnetPlane.Name = form.tbName.Text;
-                labelName.Text = form.tbName.Text;
+                currentPlane.Name = form.tbName.Text.Trim();
+                labelName.Text = form.tbName.Text.Trim();
             }
             form.Dispose();
         }
@@ -40,31 +40,45 @@ namespace PlaneClient
             ChangeNameOrType form = new ChangeNameOrType();
 
             form.ChangeType(2);
-            form.cbType.SelectedIndex = currnetPlane.PlaneType - 1;
+            form.cbType.SelectedIndex = currentPlane.PlaneType - 1;
 
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                currnetPlane.PlaneType = form.cbType.SelectedIndex + 1;
-                labelType.Text = getTypeString(currnetPlane.PlaneType);
+                currentPlane.PlaneType = form.cbType.SelectedIndex + 1;
+                labelType.Text = getTypeString(currentPlane.PlaneType);
             }
             form.Dispose();
         }
 
         private void btnTakeOff_Click(object sender, EventArgs e)
         {
-
+            if (currentPlane.State == 0)
+            {
+                clientReference.
+            }
+            else
+            {
+                MessageBox.Show("Вы не находитесь в ангаре!");
+            }
         }
 
         private void btnLand_Click(object sender, EventArgs e)
         {
+            if (currentPlane.State == -1)
+            {
 
+            }
+            else
+            {
+                MessageBox.Show("Вы не находитесь в воздухе!");
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            labelName.Text = currnetPlane.Name;
-            labelState.Text = getPositionString(currnetPlane.State);
-            labelType.Text = getTypeString(currnetPlane.PlaneType);
+            labelName.Text = currentPlane.Name;
+            labelState.Text = getPositionString(currentPlane.State);
+            labelType.Text = getTypeString(currentPlane.PlaneType);
         }
 
         private string getPositionString(int position)
