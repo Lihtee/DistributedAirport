@@ -13,7 +13,8 @@ namespace PlaneClient
     public partial class MainForm : Form
     {
         public static BalancerReference.BalancerServiceSoapClient clientReference = new BalancerReference.BalancerServiceSoapClient();
-        public BalancerReference.Plane currentPlane = clientReference.NewPlane();
+        public BalancerReference.Request currentRequest = clientReference.NewRequest();
+        Random random = new Random();
 
         public MainForm()
         {
@@ -25,11 +26,11 @@ namespace PlaneClient
             ChangeNameOrType form = new ChangeNameOrType();
 
             form.ChangeType(1);
-            form.tbName.Text = currentPlane.Name;
+            form.tbName.Text = currentRequest.Plane.Name;
 
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                currentPlane.Name = form.tbName.Text.Trim();
+                currentRequest.Plane.Name = form.tbName.Text.Trim();
                 labelName.Text = form.tbName.Text.Trim();
             }
             form.Dispose();
@@ -40,21 +41,24 @@ namespace PlaneClient
             ChangeNameOrType form = new ChangeNameOrType();
 
             form.ChangeType(2);
-            form.cbType.SelectedIndex = currentPlane.PlaneType - 1;
+            form.cbType.SelectedIndex = currentRequest.Plane.PlaneType - 1;
 
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                currentPlane.PlaneType = form.cbType.SelectedIndex + 1;
-                labelType.Text = getTypeString(currentPlane.PlaneType);
+                currentRequest.Plane.PlaneType = form.cbType.SelectedIndex + 1;
+                labelType.Text = getTypeString(currentRequest.Plane.PlaneType);
             }
             form.Dispose();
         }
 
         private void btnTakeOff_Click(object sender, EventArgs e)
         {
-            if (currentPlane.State == 0)
+            if (currentRequest.Plane.State == 0)
             {
-                clientReference.
+                currentRequest = randomizeDifficulty(currentRequest);
+                currentRequest.RequestType = 1;
+                currentRequest.SenderIP = clientReference.Endpoint.Address.Uri.Authority;
+                clientReference.MakeRequest(currentRequest);
             }
             else
             {
@@ -64,9 +68,12 @@ namespace PlaneClient
 
         private void btnLand_Click(object sender, EventArgs e)
         {
-            if (currentPlane.State == -1)
+            if (currentRequest.Plane.State == -1)
             {
-
+                currentRequest = randomizeDifficulty(currentRequest);
+                currentRequest.RequestType = 2;
+                currentRequest.SenderIP = clientReference.Endpoint.Address.Uri.Authority;
+                clientReference.MakeRequest(currentRequest);
             }
             else
             {
@@ -74,11 +81,19 @@ namespace PlaneClient
             }
         }
 
+        private BalancerReference.Request randomizeDifficulty(BalancerReference.Request request)
+        {
+            request.RequestDifficulty = random.Next(10, 40);
+            request.RequestTime = random.Next(1000, 10000);
+
+            return request;
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
-            labelName.Text = currentPlane.Name;
-            labelState.Text = getPositionString(currentPlane.State);
-            labelType.Text = getTypeString(currentPlane.PlaneType);
+            labelName.Text = currentRequest.Plane.Name;
+            labelState.Text = getPositionString(currentRequest.Plane.State);
+            labelType.Text = getTypeString(currentRequest.Plane.PlaneType);
         }
 
         private string getPositionString(int position)

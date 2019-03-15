@@ -92,13 +92,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\ReserveServerReference\ReserveServerService.disco" />
-    <None Include="Connected Services\ReserveServerReference\configuration91.svcinfo" />
-    <None Include="Connected Services\ReserveServerReference\configuration.svcinfo" />
-    <None Include="Connected Services\ReserveServerReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -111,16 +104,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\ReserveServerReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\MainServerReference\MainServerService.wsdl" />
-    <None Include="Connected Services\ReserveServerReference\ReserveServerService.wsdl" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -134,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\MainServerReference\" />
-    <WCFMetadataStorage Include="Connected Services\ReserveServerReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

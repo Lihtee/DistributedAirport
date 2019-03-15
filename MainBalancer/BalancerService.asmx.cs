@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Services;
 
@@ -18,8 +20,8 @@ namespace MainBalancer
     {
         public MainServerReference.MainServerServiceSoapClient mainServer = new MainServerReference.MainServerServiceSoapClient();
 
-        public List<string> servers;
-        public List<string> clients;
+        public static List<string> servers = new List<string>();
+        public static List<string> clients = new List<string>();
 
         [WebMethod]
         public Request MakeRequest(Request request)
@@ -28,9 +30,7 @@ namespace MainBalancer
             if (!clients.Contains(clientAddress))
                 clients.Add(clientAddress);
 
-            MainServerReference.Plane response = mainServer.ChangeName(request.Plane, "124");
-
-            request.Plane = response;
+            string address = getFreeServer();
 
             return request;
         }
@@ -40,9 +40,7 @@ namespace MainBalancer
         {
             Request request = new Request();
 
-            MainServerReference.Plane response = mainServer.ChangeName(request.Plane, "124");
-
-            request.Plane = response;
+            string address = getFreeServer();
 
             return request;
         }
@@ -55,9 +53,73 @@ namespace MainBalancer
             return plane;
         }
 
+        [WebMethod]
+        public void StoreServer(string address)
+        {
+            if (!servers.Contains(address))
+                servers.Add(address);
+        }
+
+        [WebMethod]
+        public string ShowStoredServers()
+        {
+            return servers.FirstOrDefault();
+        }
+
         private string getFreeServer()
         {
-            return "";
+            if (!servers.Contains(getURLAddress()))
+            {
+                servers.Add(getURLAddress());
+            }
+
+            int min = 101;
+            string res = "";
+
+            foreach (string str in servers)
+            {
+                try
+                {
+                    WebRequest request = WebRequest.Create("http://" + str + "/getLoad");
+                    request.Method = "POST";
+                    request.ContentLength = 0;
+                    WebResponse response = request.GetResponse();
+
+                    var encoding = Encoding.UTF8;
+                    string responseText;
+                    using (var reader = new System.IO.StreamReader(response.GetResponseStream(), encoding))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                    responseText = responseText.Remove(0, 40); //"<int xmlns=\"http://tempuri.org/\">0</int>"
+                    int indexStart = responseText.IndexOf('>');
+                    int indexFinish = responseText.Remove(0, 2).IndexOf('<');
+
+                    responseText = responseText.Substring(indexStart + 1, indexFinish - indexStart + 1);
+                    int responseInt = Int32.Parse(responseText);
+
+                    if (responseInt < min)
+                    {
+                        min = responseInt;
+                        res = str;
+                    }
+                }
+                catch (Exception)
+                {
+
+                }                
+            }
+
+            return res;
+        }
+
+        private string getURLAddress()
+        {
+            string res = "";
+
+            res = mainServer.Endpoint.ListenUri.Authority + "/" + mainServer.Endpoint.ListenUri.Segments[1];
+
+            return res;
         }
     }
 

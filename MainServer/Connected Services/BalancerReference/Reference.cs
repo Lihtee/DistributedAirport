@@ -128,6 +128,9 @@ namespace MainServer.BalancerReference {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MainServer.BalancerReference.ExtensionDataObject ExtensionData1Field;
+        
         private int StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -145,6 +148,19 @@ namespace MainServer.BalancerReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(Name="ExtensionData", EmitDefaultValue=false)]
+        public MainServer.BalancerReference.ExtensionDataObject ExtensionData1 {
+            get {
+                return this.ExtensionData1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExtensionData1Field, value) != true)) {
+                    this.ExtensionData1Field = value;
+                    this.RaisePropertyChanged("ExtensionData1");
+                }
+            }
+        }
+        
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public int State {
             get {
@@ -158,7 +174,7 @@ namespace MainServer.BalancerReference {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string Name {
             get {
                 return this.NameField;
@@ -171,7 +187,7 @@ namespace MainServer.BalancerReference {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
         public int PlaneType {
             get {
                 return this.PlaneTypeField;
@@ -194,31 +210,81 @@ namespace MainServer.BalancerReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ExtensionDataObject", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class ExtensionDataObject : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BalancerReference.BalancerServiceSoap")]
     public interface BalancerServiceSoap {
         
         // CODEGEN: Generating message contract since element name request from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/request", ReplyAction="*")]
-        MainServer.BalancerReference.requestResponse request(MainServer.BalancerReference.requestRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/MakeRequest", ReplyAction="*")]
+        MainServer.BalancerReference.MakeRequestResponse MakeRequest(MainServer.BalancerReference.MakeRequestRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/request", ReplyAction="*")]
-        System.Threading.Tasks.Task<MainServer.BalancerReference.requestResponse> requestAsync(MainServer.BalancerReference.requestRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/MakeRequest", ReplyAction="*")]
+        System.Threading.Tasks.Task<MainServer.BalancerReference.MakeRequestResponse> MakeRequestAsync(MainServer.BalancerReference.MakeRequestRequest request);
+        
+        // CODEGEN: Generating message contract since element name NewRequestResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NewRequest", ReplyAction="*")]
+        MainServer.BalancerReference.NewRequestResponse NewRequest(MainServer.BalancerReference.NewRequestRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NewRequest", ReplyAction="*")]
+        System.Threading.Tasks.Task<MainServer.BalancerReference.NewRequestResponse> NewRequestAsync(MainServer.BalancerReference.NewRequestRequest request);
+        
+        // CODEGEN: Generating message contract since element name NewPlaneResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NewPlane", ReplyAction="*")]
+        MainServer.BalancerReference.NewPlaneResponse NewPlane(MainServer.BalancerReference.NewPlaneRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NewPlane", ReplyAction="*")]
+        System.Threading.Tasks.Task<MainServer.BalancerReference.NewPlaneResponse> NewPlaneAsync(MainServer.BalancerReference.NewPlaneRequest request);
+        
+        // CODEGEN: Generating message contract since element name address from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/StoreServer", ReplyAction="*")]
+        MainServer.BalancerReference.StoreServerResponse StoreServer(MainServer.BalancerReference.StoreServerRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/StoreServer", ReplyAction="*")]
+        System.Threading.Tasks.Task<MainServer.BalancerReference.StoreServerResponse> StoreServerAsync(MainServer.BalancerReference.StoreServerRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class requestRequest {
+    public partial class MakeRequestRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="request", Namespace="http://tempuri.org/", Order=0)]
-        public MainServer.BalancerReference.requestRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="MakeRequest", Namespace="http://tempuri.org/", Order=0)]
+        public MainServer.BalancerReference.MakeRequestRequestBody Body;
         
-        public requestRequest() {
+        public MakeRequestRequest() {
         }
         
-        public requestRequest(MainServer.BalancerReference.requestRequestBody Body) {
+        public MakeRequestRequest(MainServer.BalancerReference.MakeRequestRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -227,15 +293,15 @@ namespace MainServer.BalancerReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class requestRequestBody {
+    public partial class MakeRequestRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public MainServer.BalancerReference.Request request;
         
-        public requestRequestBody() {
+        public MakeRequestRequestBody() {
         }
         
-        public requestRequestBody(MainServer.BalancerReference.Request request) {
+        public MakeRequestRequestBody(MainServer.BalancerReference.Request request) {
             this.request = request;
         }
     }
@@ -244,15 +310,15 @@ namespace MainServer.BalancerReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class requestResponse {
+    public partial class MakeRequestResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="requestResponse", Namespace="http://tempuri.org/", Order=0)]
-        public MainServer.BalancerReference.requestResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="MakeRequestResponse", Namespace="http://tempuri.org/", Order=0)]
+        public MainServer.BalancerReference.MakeRequestResponseBody Body;
         
-        public requestResponse() {
+        public MakeRequestResponse() {
         }
         
-        public requestResponse(MainServer.BalancerReference.requestResponseBody Body) {
+        public MakeRequestResponse(MainServer.BalancerReference.MakeRequestResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -261,16 +327,199 @@ namespace MainServer.BalancerReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class requestResponseBody {
+    public partial class MakeRequestResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public MainServer.BalancerReference.Request requestResult;
+        public MainServer.BalancerReference.Request MakeRequestResult;
         
-        public requestResponseBody() {
+        public MakeRequestResponseBody() {
         }
         
-        public requestResponseBody(MainServer.BalancerReference.Request requestResult) {
-            this.requestResult = requestResult;
+        public MakeRequestResponseBody(MainServer.BalancerReference.Request MakeRequestResult) {
+            this.MakeRequestResult = MakeRequestResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class NewRequestRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="NewRequest", Namespace="http://tempuri.org/", Order=0)]
+        public MainServer.BalancerReference.NewRequestRequestBody Body;
+        
+        public NewRequestRequest() {
+        }
+        
+        public NewRequestRequest(MainServer.BalancerReference.NewRequestRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class NewRequestRequestBody {
+        
+        public NewRequestRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class NewRequestResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="NewRequestResponse", Namespace="http://tempuri.org/", Order=0)]
+        public MainServer.BalancerReference.NewRequestResponseBody Body;
+        
+        public NewRequestResponse() {
+        }
+        
+        public NewRequestResponse(MainServer.BalancerReference.NewRequestResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class NewRequestResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public MainServer.BalancerReference.Request NewRequestResult;
+        
+        public NewRequestResponseBody() {
+        }
+        
+        public NewRequestResponseBody(MainServer.BalancerReference.Request NewRequestResult) {
+            this.NewRequestResult = NewRequestResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class NewPlaneRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="NewPlane", Namespace="http://tempuri.org/", Order=0)]
+        public MainServer.BalancerReference.NewPlaneRequestBody Body;
+        
+        public NewPlaneRequest() {
+        }
+        
+        public NewPlaneRequest(MainServer.BalancerReference.NewPlaneRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class NewPlaneRequestBody {
+        
+        public NewPlaneRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class NewPlaneResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="NewPlaneResponse", Namespace="http://tempuri.org/", Order=0)]
+        public MainServer.BalancerReference.NewPlaneResponseBody Body;
+        
+        public NewPlaneResponse() {
+        }
+        
+        public NewPlaneResponse(MainServer.BalancerReference.NewPlaneResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class NewPlaneResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public MainServer.BalancerReference.Plane NewPlaneResult;
+        
+        public NewPlaneResponseBody() {
+        }
+        
+        public NewPlaneResponseBody(MainServer.BalancerReference.Plane NewPlaneResult) {
+            this.NewPlaneResult = NewPlaneResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class StoreServerRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="StoreServer", Namespace="http://tempuri.org/", Order=0)]
+        public MainServer.BalancerReference.StoreServerRequestBody Body;
+        
+        public StoreServerRequest() {
+        }
+        
+        public StoreServerRequest(MainServer.BalancerReference.StoreServerRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class StoreServerRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string address;
+        
+        public StoreServerRequestBody() {
+        }
+        
+        public StoreServerRequestBody(string address) {
+            this.address = address;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class StoreServerResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="StoreServerResponse", Namespace="http://tempuri.org/", Order=0)]
+        public MainServer.BalancerReference.StoreServerResponseBody Body;
+        
+        public StoreServerResponse() {
+        }
+        
+        public StoreServerResponse(MainServer.BalancerReference.StoreServerResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class StoreServerResponseBody {
+        
+        public StoreServerResponseBody() {
         }
     }
     
@@ -302,28 +551,98 @@ namespace MainServer.BalancerReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        MainServer.BalancerReference.requestResponse MainServer.BalancerReference.BalancerServiceSoap.request(MainServer.BalancerReference.requestRequest request) {
-            return base.Channel.request(request);
+        MainServer.BalancerReference.MakeRequestResponse MainServer.BalancerReference.BalancerServiceSoap.MakeRequest(MainServer.BalancerReference.MakeRequestRequest request) {
+            return base.Channel.MakeRequest(request);
         }
         
-        public MainServer.BalancerReference.Request request(MainServer.BalancerReference.Request request1) {
-            MainServer.BalancerReference.requestRequest inValue = new MainServer.BalancerReference.requestRequest();
-            inValue.Body = new MainServer.BalancerReference.requestRequestBody();
-            inValue.Body.request = request1;
-            MainServer.BalancerReference.requestResponse retVal = ((MainServer.BalancerReference.BalancerServiceSoap)(this)).request(inValue);
-            return retVal.Body.requestResult;
+        public MainServer.BalancerReference.Request MakeRequest(MainServer.BalancerReference.Request request) {
+            MainServer.BalancerReference.MakeRequestRequest inValue = new MainServer.BalancerReference.MakeRequestRequest();
+            inValue.Body = new MainServer.BalancerReference.MakeRequestRequestBody();
+            inValue.Body.request = request;
+            MainServer.BalancerReference.MakeRequestResponse retVal = ((MainServer.BalancerReference.BalancerServiceSoap)(this)).MakeRequest(inValue);
+            return retVal.Body.MakeRequestResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<MainServer.BalancerReference.requestResponse> MainServer.BalancerReference.BalancerServiceSoap.requestAsync(MainServer.BalancerReference.requestRequest request) {
-            return base.Channel.requestAsync(request);
+        System.Threading.Tasks.Task<MainServer.BalancerReference.MakeRequestResponse> MainServer.BalancerReference.BalancerServiceSoap.MakeRequestAsync(MainServer.BalancerReference.MakeRequestRequest request) {
+            return base.Channel.MakeRequestAsync(request);
         }
         
-        public System.Threading.Tasks.Task<MainServer.BalancerReference.requestResponse> requestAsync(MainServer.BalancerReference.Request request) {
-            MainServer.BalancerReference.requestRequest inValue = new MainServer.BalancerReference.requestRequest();
-            inValue.Body = new MainServer.BalancerReference.requestRequestBody();
+        public System.Threading.Tasks.Task<MainServer.BalancerReference.MakeRequestResponse> MakeRequestAsync(MainServer.BalancerReference.Request request) {
+            MainServer.BalancerReference.MakeRequestRequest inValue = new MainServer.BalancerReference.MakeRequestRequest();
+            inValue.Body = new MainServer.BalancerReference.MakeRequestRequestBody();
             inValue.Body.request = request;
-            return ((MainServer.BalancerReference.BalancerServiceSoap)(this)).requestAsync(inValue);
+            return ((MainServer.BalancerReference.BalancerServiceSoap)(this)).MakeRequestAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainServer.BalancerReference.NewRequestResponse MainServer.BalancerReference.BalancerServiceSoap.NewRequest(MainServer.BalancerReference.NewRequestRequest request) {
+            return base.Channel.NewRequest(request);
+        }
+        
+        public MainServer.BalancerReference.Request NewRequest() {
+            MainServer.BalancerReference.NewRequestRequest inValue = new MainServer.BalancerReference.NewRequestRequest();
+            inValue.Body = new MainServer.BalancerReference.NewRequestRequestBody();
+            MainServer.BalancerReference.NewRequestResponse retVal = ((MainServer.BalancerReference.BalancerServiceSoap)(this)).NewRequest(inValue);
+            return retVal.Body.NewRequestResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<MainServer.BalancerReference.NewRequestResponse> MainServer.BalancerReference.BalancerServiceSoap.NewRequestAsync(MainServer.BalancerReference.NewRequestRequest request) {
+            return base.Channel.NewRequestAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<MainServer.BalancerReference.NewRequestResponse> NewRequestAsync() {
+            MainServer.BalancerReference.NewRequestRequest inValue = new MainServer.BalancerReference.NewRequestRequest();
+            inValue.Body = new MainServer.BalancerReference.NewRequestRequestBody();
+            return ((MainServer.BalancerReference.BalancerServiceSoap)(this)).NewRequestAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainServer.BalancerReference.NewPlaneResponse MainServer.BalancerReference.BalancerServiceSoap.NewPlane(MainServer.BalancerReference.NewPlaneRequest request) {
+            return base.Channel.NewPlane(request);
+        }
+        
+        public MainServer.BalancerReference.Plane NewPlane() {
+            MainServer.BalancerReference.NewPlaneRequest inValue = new MainServer.BalancerReference.NewPlaneRequest();
+            inValue.Body = new MainServer.BalancerReference.NewPlaneRequestBody();
+            MainServer.BalancerReference.NewPlaneResponse retVal = ((MainServer.BalancerReference.BalancerServiceSoap)(this)).NewPlane(inValue);
+            return retVal.Body.NewPlaneResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<MainServer.BalancerReference.NewPlaneResponse> MainServer.BalancerReference.BalancerServiceSoap.NewPlaneAsync(MainServer.BalancerReference.NewPlaneRequest request) {
+            return base.Channel.NewPlaneAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<MainServer.BalancerReference.NewPlaneResponse> NewPlaneAsync() {
+            MainServer.BalancerReference.NewPlaneRequest inValue = new MainServer.BalancerReference.NewPlaneRequest();
+            inValue.Body = new MainServer.BalancerReference.NewPlaneRequestBody();
+            return ((MainServer.BalancerReference.BalancerServiceSoap)(this)).NewPlaneAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MainServer.BalancerReference.StoreServerResponse MainServer.BalancerReference.BalancerServiceSoap.StoreServer(MainServer.BalancerReference.StoreServerRequest request) {
+            return base.Channel.StoreServer(request);
+        }
+        
+        public void StoreServer(string address) {
+            MainServer.BalancerReference.StoreServerRequest inValue = new MainServer.BalancerReference.StoreServerRequest();
+            inValue.Body = new MainServer.BalancerReference.StoreServerRequestBody();
+            inValue.Body.address = address;
+            MainServer.BalancerReference.StoreServerResponse retVal = ((MainServer.BalancerReference.BalancerServiceSoap)(this)).StoreServer(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<MainServer.BalancerReference.StoreServerResponse> MainServer.BalancerReference.BalancerServiceSoap.StoreServerAsync(MainServer.BalancerReference.StoreServerRequest request) {
+            return base.Channel.StoreServerAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<MainServer.BalancerReference.StoreServerResponse> StoreServerAsync(string address) {
+            MainServer.BalancerReference.StoreServerRequest inValue = new MainServer.BalancerReference.StoreServerRequest();
+            inValue.Body = new MainServer.BalancerReference.StoreServerRequestBody();
+            inValue.Body.address = address;
+            return ((MainServer.BalancerReference.BalancerServiceSoap)(this)).StoreServerAsync(inValue);
         }
     }
 }

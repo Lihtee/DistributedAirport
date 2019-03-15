@@ -16,30 +16,66 @@ namespace MainServer
     // [System.Web.Script.Services.ScriptService]
     public class MainServerService : System.Web.Services.WebService
     {
-        public List<BalancerReference.Request> currentTasks;
+        public List<BalancerReference.Request> currentTasks = new List<BalancerReference.Request>();
+        public BalancerReference.BalancerServiceSoapClient balancerService = new BalancerReference.BalancerServiceSoapClient();
+        public static bool alreadySendAddress = false;
 
         [WebMethod]
         public Plane NewPlane()
         {
+            sendAddress();
             return new Plane();
         }
 
         [WebMethod]
         public Plane ChangeState(Plane plane, int newState)
         {
+            sendAddress();
             return plane.changeState(newState);
         }
 
         [WebMethod]
         public Plane ChangeName(Plane plane, string newName)
         {
+            sendAddress();
             return plane.changeName(newName);
         }
 
         [WebMethod]
         public Plane ChangeType(Plane plane, int newType)
         {
+            sendAddress();
             return plane.changeType(newType);
+        }
+
+        [WebMethod]
+        public int getLoad()
+        {
+            sendAddress();
+            int result = 0;
+            foreach (BalancerReference.Request req in currentTasks)
+            {
+                result += req.RequestDifficulty;
+            }
+            return result;
+        }
+
+        private string getURLAddress()
+        {
+            string res = "";
+
+            res = HttpContext.Current.Request.Url.Authority + "/" + HttpContext.Current.Request.Url.Segments[1];
+
+            return res;
+        }
+
+        private void sendAddress()
+        {
+            if (!alreadySendAddress)
+            {
+                balancerService.StoreServer(getURLAddress());
+                alreadySendAddress = true;
+            }
         }
     }
 

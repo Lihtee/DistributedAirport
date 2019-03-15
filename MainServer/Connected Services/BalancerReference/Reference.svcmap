@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3f0dbaaf-cfa0-4040-8450-f2691c822fd3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="37c8b975-0061-4a19-9751-60003f27c89b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:5434/BalancerService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="BalancerService.wsdl" MetadataType="Wsdl" ID="6e70358b-4c02-4b97-b298-8ae40ef9eaba" SourceId="1" SourceUrl="http://localhost:5434/BalancerService.asmx?wsdl" />
-    <MetadataFile FileName="BalancerService.disco" MetadataType="Disco" ID="a62c75ed-936f-4d8c-bf81-df906f0ec196" SourceId="1" SourceUrl="http://localhost:5434/BalancerService.asmx?disco" />
+    <MetadataFile FileName="BalancerService.wsdl" MetadataType="Wsdl" ID="da5d843f-e566-460d-bfc7-32c2b7a229bd" SourceId="1" SourceUrl="http://localhost:5434/BalancerService.asmx?wsdl" />
+    <MetadataFile FileName="BalancerService.disco" MetadataType="Disco" ID="48946840-7831-4566-ac27-df28af6067b9" SourceId="1" SourceUrl="http://localhost:5434/BalancerService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

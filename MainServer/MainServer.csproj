@@ -72,10 +72,22 @@
     <None Include="Connected Services\BalancerReference\BalancerService.disco" />
     <None Include="Connected Services\BalancerReference\configuration91.svcinfo" />
     <None Include="Connected Services\BalancerReference\configuration.svcinfo" />
+    <Content Include="Connected Services\BalancerReference\MainServer.BalancerReference.MakeRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\BalancerReference\MainServer.BalancerReference.NewPlaneResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\BalancerReference\MainServer.BalancerReference.NewRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\BalancerReference\MainServer.BalancerReference.Plane.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Connected Services\BalancerReference\MainServer.BalancerReference.Request.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\BalancerReference\MainServer.BalancerReference.requestResponse.datasource">
+    <Content Include="Connected Services\BalancerReference\MainServer.BalancerReference.StoreServerResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\BalancerReference\Reference.svcmap">
