@@ -20,6 +20,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveServer", "ReserveSer
 		{755D595E-6CE5-4A98-8A93-DFC58898FBF7} = {755D595E-6CE5-4A98-8A93-DFC58898FBF7}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{49E19D99-6F47-42BF-B456-9478195E87B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculationServer", "CalculationServer\CalculationServer.csproj", "{32770C51-2A1E-415A-83FC-D515B493B369}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +46,14 @@ Global
 		{1978BDA1-EEA6-4EEB-9EED-F9321D269062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1978BDA1-EEA6-4EEB-9EED-F9321D269062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1978BDA1-EEA6-4EEB-9EED-F9321D269062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49E19D99-6F47-42BF-B456-9478195E87B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49E19D99-6F47-42BF-B456-9478195E87B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49E19D99-6F47-42BF-B456-9478195E87B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49E19D99-6F47-42BF-B456-9478195E87B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32770C51-2A1E-415A-83FC-D515B493B369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32770C51-2A1E-415A-83FC-D515B493B369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32770C51-2A1E-415A-83FC-D515B493B369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32770C51-2A1E-415A-83FC-D515B493B369}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
