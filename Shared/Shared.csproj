@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BaseSimulatedMethod.cs" />
     <Compile Include="CalculateLineData.cs" />
+    <Compile Include="Methods.cs" />
     <Compile Include="MethodsPull.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
