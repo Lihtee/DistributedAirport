@@ -11,6 +11,9 @@ namespace Shared
 
         [DataMember]
         public Plane Plane;
+
+        [DataMember]
+        public bool Initial;
     }
 
     /// <summary>

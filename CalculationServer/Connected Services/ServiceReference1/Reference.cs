@@ -26,6 +26,12 @@ namespace CalculationServer.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculatingService/CalculateLine", ReplyAction="http://tempuri.org/ICalculatingService/CalculateLineResponse")]
         System.Threading.Tasks.Task<int> CalculateLineAsync(Shared.CalculateLineData data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculatingService/GetLoading", ReplyAction="http://tempuri.org/ICalculatingService/GetLoadingResponse")]
+        int GetLoading();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculatingService/GetLoading", ReplyAction="http://tempuri.org/ICalculatingService/GetLoadingResponse")]
+        System.Threading.Tasks.Task<int> GetLoadingAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,14 @@ namespace CalculationServer.ServiceReference1 {
         
         public System.Threading.Tasks.Task<int> CalculateLineAsync(Shared.CalculateLineData data) {
             return base.Channel.CalculateLineAsync(data);
+        }
+        
+        public int GetLoading() {
+            return base.Channel.GetLoading();
+        }
+        
+        public System.Threading.Tasks.Task<int> GetLoadingAsync() {
+            return base.Channel.GetLoadingAsync();
         }
     }
 }

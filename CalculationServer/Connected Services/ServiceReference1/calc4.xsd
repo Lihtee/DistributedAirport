@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.168.43.144:51077/calc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://192.168.43.144:51077/calc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Shared" />
+  <xs:import schemaLocation="http://192.168.43.144:51499/calc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://192.168.43.144:51499/calc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Shared" />
   <xs:element name="Connect">
     <xs:complexType>
       <xs:sequence>
@@ -27,6 +27,18 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="CalculateLineResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLoading">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLoadingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLoadingResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.43.144:51077/calc" Protocol="http" SourceId="1" />
+    <MetadataSource Address=" http://192.168.43.144:51499/calc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="calc.xsd" MetadataType="Schema" ID="743450a2-dd02-4962-b8dd-46bbe592ae87" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?xsd=xsd2" />
-    <MetadataFile FileName="calc1.xsd" MetadataType="Schema" ID="69da73d4-b2de-4e8d-bf88-487a5efff7cd" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?xsd=xsd3" />
-    <MetadataFile FileName="calc2.xsd" MetadataType="Schema" ID="477d30bd-19a4-428d-b170-2716eb4a99d7" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?xsd=xsd0" />
-    <MetadataFile FileName="calc3.xsd" MetadataType="Schema" ID="79666d0e-9fed-4dac-873c-ed97e579073f" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?xsd=xsd1" />
-    <MetadataFile FileName="CalculatingService.wsdl" MetadataType="Wsdl" ID="69b9d9f5-ae4f-4de9-aba9-b8cda7bf13be" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?wsdl" />
-    <MetadataFile FileName="calc.disco" MetadataType="Disco" ID="d2946f16-4c1d-49af-b914-5d0af0c1bbc5" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?disco" />
+    <MetadataFile FileName="calc4.xsd" MetadataType="Schema" ID="d04b94db-01ba-497c-9835-847713d10311" SourceId="1" SourceUrl="http://192.168.43.144:51499/calc?xsd=xsd0" />
+    <MetadataFile FileName="calc41.xsd" MetadataType="Schema" ID="6fc1a17d-a231-4839-9dde-27844dc0f223" SourceId="1" SourceUrl="http://192.168.43.144:51499/calc?xsd=xsd1" />
+    <MetadataFile FileName="calc1.disco" MetadataType="Disco" ID="9f276347-ec30-4ea9-add1-500bba10a616" SourceId="1" SourceUrl="http://192.168.43.144:51499/calc?disco" />
+    <MetadataFile FileName="calc42.xsd" MetadataType="Schema" ID="a6129f64-039b-47a5-98ef-4eb7e52a4e73" SourceId="1" SourceUrl="http://192.168.43.144:51499/calc?xsd=xsd3" />
+    <MetadataFile FileName="calc43.xsd" MetadataType="Schema" ID="add75a8f-a44c-4b52-82bc-03094bb6c21c" SourceId="1" SourceUrl="http://192.168.43.144:51499/calc?xsd=xsd2" />
+    <MetadataFile FileName="CalculatingService1.wsdl" MetadataType="Wsdl" ID="a7d62d5d-6ec2-4766-adb9-3ba28949509e" SourceId="1" SourceUrl="http://192.168.43.144:51499/calc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
