@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Shared" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Shared" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.43.144:51077/calc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="CalculateLineData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Lines" nillable="true" type="tns:ArrayOfLine" />
+      <xs:element minOccurs="0" name="Plane" nillable="true" type="tns:Plane" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CalculateLineData" nillable="true" type="tns:CalculateLineData" />
+  <xs:complexType name="ArrayOfLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Line" nillable="true" type="tns:Line" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLine" nillable="true" type="tns:ArrayOfLine" />
+  <xs:complexType name="Line">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Nmber" type="xs:int" />
+      <xs:element minOccurs="0" name="State" type="tns:tState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Line" nillable="true" type="tns:Line" />
+  <xs:simpleType name="tState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Free">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Busy">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="tState" nillable="true" type="tns:tState" />
+  <xs:complexType name="Plane">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="Plane" nillable="true" type="tns:Plane" />
+</xs:schema>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="83bff073-4c28-47a2-a9e9-a2e2d702069d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.43.144:51077/calc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="calc.xsd" MetadataType="Schema" ID="743450a2-dd02-4962-b8dd-46bbe592ae87" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?xsd=xsd2" />
+    <MetadataFile FileName="calc1.xsd" MetadataType="Schema" ID="69da73d4-b2de-4e8d-bf88-487a5efff7cd" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?xsd=xsd3" />
+    <MetadataFile FileName="calc2.xsd" MetadataType="Schema" ID="477d30bd-19a4-428d-b170-2716eb4a99d7" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?xsd=xsd0" />
+    <MetadataFile FileName="calc3.xsd" MetadataType="Schema" ID="79666d0e-9fed-4dac-873c-ed97e579073f" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?xsd=xsd1" />
+    <MetadataFile FileName="CalculatingService.wsdl" MetadataType="Wsdl" ID="69b9d9f5-ae4f-4de9-aba9-b8cda7bf13be" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?wsdl" />
+    <MetadataFile FileName="calc.disco" MetadataType="Disco" ID="d2946f16-4c1d-49af-b914-5d0af0c1bbc5" SourceId="1" SourceUrl="http://192.168.43.144:51077/calc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
