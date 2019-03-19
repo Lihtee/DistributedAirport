@@ -20,9 +20,10 @@ namespace Shared
         public object ExecuteMethod(BaseSimulatedMethod bsm)
         {
             methods.Add(bsm);
+            object result = bsm.Process();
             Thread.Sleep(1000 * bsm.Time);
             methods.Remove(bsm);
-            return bsm.Process();
+            return result;
         }
 
         /// <summary>
@@ -31,6 +32,11 @@ namespace Shared
         public int GetLoading()
         {
             return methods.Sum(x => x.Loading);
+        }
+
+        public List<string> GetMethodList()
+        {
+            return methods.Select(x => x.Name).ToList();
         }
     }
 }

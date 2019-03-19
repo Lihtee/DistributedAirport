@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using System.Text;
 using System.Threading;
 using CalculationServer.ServiceReference1;
 using Shared;
@@ -50,6 +51,9 @@ namespace CalculationServer
                 var t = new Thread(ExchangeAddress) { IsBackground = true };
                 t.Start();
 
+                var printThread = new Thread(PrintStatus) { IsBackground = true };
+                printThread.Start();
+
                 while (true)
                 {
                     var input = Console.ReadLine().Split(' ');
@@ -62,8 +66,50 @@ namespace CalculationServer
                         var result = client.Connect(ServerSettings.ServerList.ToArray());
                         Console.WriteLine("Connected");
                     }
+
+                    if (input[0] == "calc")
+                    {
+
+                        int result = (int)ServerSettings.MethodsPull.ExecuteMethod(new CalculateLineSimulated(new CalculateLineData
+                        {
+                            Initial = true,
+                            Lines = new List<Line>(),
+                            Plane = new Plane()
+                        }));
+
+                        Console.WriteLine($"Calculated: {result}");
+                    }
                 }
             }
+        }
+
+        public static void PrintStatus()
+        {
+            while (true)
+            {
+                var sb = new StringBuilder();
+                var lines = new List<string>
+                {
+                    $"Текущий адрес сервера: {BaseAddress}",
+                    $"Текущая нагрузка: {ServerSettings.MethodsPull.GetLoading()}",
+                    "Список известных серверов: "
+                };
+
+                foreach (var server in ServerSettings.ServerList) lines.Add(server);
+
+                lines.Add("Список выполняемых операций: ");
+                foreach (var method in ServerSettings.MethodsPull.GetMethodList()) lines.Add(method);
+
+                Console.Clear();
+                foreach (var line in lines)
+                {
+                    sb.AppendLine(line);
+                }
+                Console.WriteLine(sb.ToString());
+                Thread.Sleep(1000 * 10);
+            }
+
+
         }
 
         /// <summary>
@@ -158,6 +204,7 @@ namespace CalculationServer
         {
             Param = param;
 
+            Name = "Подключение";
             Loading = 1;
             Time = 1;
         }
@@ -171,7 +218,7 @@ namespace CalculationServer
                 log += $"{Environment.NewLine}{server}";
             }
 
-            Console.WriteLine(log);
+            //Console.WriteLine(log);
             return ServerSettings.ServerList;
         }
 
@@ -186,6 +233,7 @@ namespace CalculationServer
         {
             Param = param;
 
+            Name = "Посчитать полосу";
             Loading = 10;
             Time = 10;
         }
@@ -193,11 +241,12 @@ namespace CalculationServer
         private object InnerProcess()
         {
             // Какие-то вычисления сдесь.
-            return 0;
+            return 5;
         }
 
         public override object Process()
         {
+            Console.WriteLine($"Started calculating. Initial = {Param.Initial}");
             // Если не инициируем, то вычисляем.
             if (!Param.Initial)
             {
@@ -212,6 +261,7 @@ namespace CalculationServer
                 if (server == Program.BaseAddress)
                 {
                     serverLoading.Add(server, ServerSettings.MethodsPull.GetLoading());
+                    continue;
                 }
 
                 try
@@ -222,7 +272,7 @@ namespace CalculationServer
                     var result = client.GetLoading();
                     serverLoading.Add(server, result);
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     serverLoading.Add(server, -1);
                 }
@@ -245,12 +295,14 @@ namespace CalculationServer
 
             // Дадим им посчитать.
             var serverResults = new Dictionary<string, int>();
+            Param.Initial = false;
             foreach (var server in serversToCalculate)
             {
                 // Если данный сервер подходит, то тоже считает.
                 if (server.Key == Program.BaseAddress)
                 {
                     serverResults.Add(server.Key, (int)InnerProcess());
+                    continue;
                 }
 
                 try
@@ -261,7 +313,7 @@ namespace CalculationServer
                     var result = client.CalculateLine(Param);
                     serverResults.Add(server.Key, result);
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     serverResults.Add(server.Key, -1);
                 }
@@ -275,6 +327,7 @@ namespace CalculationServer
                 .Select(x => x.Key)
                 .FirstOrDefault();
 
+            Console.WriteLine("Calculated");
             return res;
         }
     }

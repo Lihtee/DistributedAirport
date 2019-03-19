@@ -15,6 +15,11 @@ namespace Shared
         /// </summary>
         public int Time;
 
+        /// <summary>
+        /// Имя.
+        /// </summary>
+        public string Name;
+
         public abstract object Process();
     }
 
